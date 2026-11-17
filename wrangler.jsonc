@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "iskcon-detroit-seva",
+  // Custom entry: wraps the OpenNext worker and adds the daily pledge-reminder cron.
+  "main": "worker.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    { "binding": "WORKER_SELF_REFERENCE", "service": "iskcon-detroit-seva" }
+  ],
+  // 14:00 UTC = 9 or 10 AM in Detroit, depending on daylight saving.
+  "triggers": { "crons": ["0 14 * * *"] },
+  "observability": { "enabled": true },
+  // Non-secret settings. Secrets (DATABASE_URL, STRIPE_*, RESEND_API_KEY,
+  // SESSION_SECRET, CRON_SECRET) are set with `wrangler secret put`.
+  "vars": {
+    "APP_URL": "https://seva.example.org",
+    "ORG_NAME": "ISKCON Detroit",
+    "ORG_LEGAL_NAME": "ISKCON of Detroit",
+    "ORG_EIN": "00-0000000",
+    "ORG_ADDRESS": "383 Lenox Ave, Detroit, MI 48215",
+    "ORG_EMAIL": "info@iskcondetroit.com",
+    "ORG_WEBSITE": "https://iskcondetroit.com",
+    "ZELLE_RECIPIENT": "",
+    "EMAIL_FROM": "ISKCON Detroit Seva <seva@example.org>",
+    "ADMIN_EMAILS": "",
+    "FEE_PERCENT": "2.2",
+    "FEE_FIXED_CENTS": "30",
+    "TIMEZONE": "America/Detroit"
+  }
+}

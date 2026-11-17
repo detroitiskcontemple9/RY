@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-saffron-50: #fff8ef;
+  --color-saffron-100: #fdecd5;
+  --color-saffron-200: #f9d3a6;
+  --color-saffron-400: #ef9440;
+  --color-saffron-500: #e3751c;
+  --color-saffron-600: #c85c10;
+  --color-saffron-700: #b4440e;
+  --color-saffron-800: #8a3410;
+  --color-maroon-900: #3d1a10;
+  --color-cream: #fbf6ef;
+  --color-ink: #2b1d14;
+  --color-muted: #7a6556;
+  --color-line: #f0e2cf;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
